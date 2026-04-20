@@ -41,6 +41,7 @@ Frameworks and synthesis we've developed ourselves, drawing across the research:
 | Piece | What it covers |
 |---|---|
 | [Why GTM Agents Need a Memory Layer](./original/gtm-memory-layer.md) | How agents currently operate without memory and why both common approaches fail. The minimum viable memory block, five design principles, and the three-layer architecture |
+| [The Workspace Memory Problem](./original/workspace-memory.md) | What gets lost between deals. Why a log isn't memory. The cross-agent learning gap Reflexion identified — and what solving it looks like at the workspace level |
 | [Entity Resolution in Real-Time GTM Data Streams](./original/gtm-entity-resolution.md) | The tiered waterfall approach, hard cases (abbreviations, nicknames, disambiguation), conflict resolution policy, and why top-down ER is right for GTM |
 
 **Implementation Notes**
