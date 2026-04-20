@@ -80,22 +80,6 @@ The minimum is not a limitation. It's a design choice. An agent that knows six p
 
 ---
 
-## What a Standard Agent Does With Memory (And Why It's Not Enough)
-
-A Claude agent, by default, has no persistent memory. Every conversation starts fresh. It doesn't know what happened in the last session, what actions were taken, or what the outcome was. If you ask it to follow up with a prospect, it has no idea who that person is, what they've discussed, or whether a proposal was already sent.
-
-This is by design. The model itself is stateless — it processes the current context and returns a response. State is the application's problem, not the model's.
-
-What developers typically do to compensate: inject recent conversation history into the system prompt, use a simple key-value store for "memory" between sessions, or retrieve from a vector database based on query similarity.
-
-These approaches handle the narrow case — a chatbot that remembers your name and preferences across sessions. They don't handle the GTM case — an agent that needs to understand where a relationship stands across months, multiple channels, and dozens of signal events, all of which arrived from different systems that the agent never directly interacted with.
-
-The gap isn't what Claude can do. The gap is what the memory layer provides before Claude ever sees a prompt. An agent with a well-structured memory layer injected into context can act on months of relationship history in one session. An agent without it starts cold every time.
-
-Claude's reasoning capability is not the bottleneck for GTM agents. The bottleneck is context. Give Claude the right 300 tokens about a contact and it will write a better follow-up than any human. Give it nothing and it writes a generic template.
-
----
-
 ## The Real Cost of Acting Without Memory
 
 The question isn't whether GTM agents are capable enough to do the tasks. The question is whether they have the context to do the tasks correctly.
