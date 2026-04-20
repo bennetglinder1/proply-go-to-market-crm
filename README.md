@@ -18,14 +18,13 @@ We continuously update this repository with:
 - Pipeline stage compute — how behavioral signals drive stage transitions without human input
 - Decay models — how memory goes stale and what to do about it
 
-**Paper Summaries**
-Concise breakdowns of research we found most relevant to building memory for agents:
-- Context Engineering — how to structure what goes into an agent's context window
-- Long-term and persistent memory architectures for agents
-- Memory-aware agent system design
-- Knowledge graphs and ontology embedding for relationship context
-- Multi-agent collaboration via evolving orchestration
-- Self-evolving memory and test-time learning
+**Paper Summaries** — [`/papers`](./papers/)**
+
+Concise breakdowns of research we found most relevant, written in the context of what it means for GTM agent memory:
+
+| Paper | Our Take |
+|---|---|
+| [Context Rot](./papers/context-rot.md) — Chroma Research | Long context ≠ solved memory. Every model degrades as tokens increase — and this is why structured, pre-computed memory exists |
 
 We'll keep adding papers as we find ones that shape how we think.
 
