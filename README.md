@@ -1,6 +1,6 @@
 # proply-research
 
-Welcome to proply-research. This is a public research log on **persistent memory for go-to-market AI agents**.
+Welcome to proply-research. This is a public research log on **persistent memory for GTM & Sales Agents**.
 
 This repository serves as part of our process of building [Proply](https://goproply.com) — the persistent memory layer for GTM agents. Our goal is to be transparent about what we find works, what doesn't, and how we think about memory architectures as we build.
 
