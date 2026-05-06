@@ -1,6 +1,6 @@
-# LinkedIn Contact Resolution — The Unipile Waterfall
+# LinkedIn Contact Resolution
 
-We built a live LinkedIn signal pipeline for Proply using Unipile as the middleware layer. The goal: every message sent, message received, and new connection automatically appears on the right contact in Proply — with the correct timestamp, no duplicates, no manual work. This is the system we landed on, and the two structural problems that took the longest to solve.
+We built a live LinkedIn signal pipeline for Proply using Unipile as the middleware layer. The goal: every message sent, message received, and new connection automatically appears on the right contact in Proply — with the correct timestamp, no duplicates, no manual work. This is how the system works.
 
 ## The Setup
 
@@ -10,7 +10,7 @@ Unipile connects to your LinkedIn account and fires webhook events to our Expres
 
 Two event types are wired up: `message_received` (fires on every sent or received LinkedIn message) and `new_relation` (fires on new connections). We discard everything else — `message_read`, `message_delivered`, `message_reaction`, and a handful of other non-actionable events — before any processing touches them. These events contain a `message_id` field that looks identical to an actionable event, and leaving them in the pipeline poisons the dedup logic.
 
-## The Resolution Problem
+## Two LinkedIn Identifiers
 
 **[VISUAL: Two LinkedIn URL formats side by side — readable slug vs ACoAA member ID — showing they share nothing in common]**
 
@@ -52,7 +52,7 @@ ALTER TABLE contacts ADD COLUMN IF NOT EXISTS linkedin_member_id text;
 CREATE INDEX IF NOT EXISTS contacts_linkedin_member_id_idx ON contacts (workspace_id, linkedin_member_id);
 ```
 
-## Import Enrichment
+## Retroactive Enrichment
 
 **[VISUAL: Flow diagram — contact import → buildAttendeeMap → scanLinkedIn → match by member ID → patch back → log connection date + message history]**
 
