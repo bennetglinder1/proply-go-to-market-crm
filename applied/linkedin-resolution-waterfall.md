@@ -29,7 +29,7 @@ The second structural issue was how name matching degrades at scale. When contac
 
 ## The Resolution Waterfall
 
-**[VISUAL: 4-step waterfall diagram — member ID → URL slug → name → create — with self-healing patch arrows at each step]**
+![Resolution Waterfall — Exists? → Member ID → URL Slug → Fallback: name](../assets/linkedin-resolution-waterfall.png)
 
 We resolved this with a 4-step identity waterfall that runs on every LinkedIn webhook event. Each step self-heals: when a contact is found, the identifiers that were used to find them get patched back onto the record. Over time, the system converges to matching everyone by member ID with no URL or name logic required.
 
