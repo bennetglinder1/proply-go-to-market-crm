@@ -4,7 +4,7 @@ We built a live LinkedIn signal pipeline for Proply using Unipile as the middlew
 
 ## The Setup
 
-**[VISUAL: Architecture diagram — Unipile → Render backend → Supabase → Proply contact timeline]**
+![Unipile → Proply stack — LinkedIn middleware to contact timeline](../assets/linkedin-stack.png)
 
 Unipile connects to your LinkedIn account and fires webhook events to our Express backend (hosted on Render) every time something happens: a message arrives, you send one, a new connection is made. Our backend receives those events, resolves which contact they belong to, and writes them to `contact_activity_log` in Supabase. From there, Proply surfaces them in the contact timeline and uses them to advance pipeline stage automatically.
 
@@ -12,7 +12,7 @@ Two event types are wired up: `message_received` (fires on every sent or receive
 
 ## Two LinkedIn Identifiers
 
-**[VISUAL: Two LinkedIn URL formats side by side — readable slug vs ACoAA member ID — showing they share nothing in common]**
+![Two LinkedIn URL formats — readable slug vs permanent member ID](../assets/linkedin-url-formats.png)
 
 The central challenge in this integration is identity. When a LinkedIn webhook arrives, you know the sender's name, their LinkedIn URL, and a LinkedIn member ID. When a contact exists in Proply, they might have been imported from a CSV with a human-readable URL, added manually, or created from a prior webhook. The question is: are these the same person?
 
@@ -54,7 +54,7 @@ CREATE INDEX IF NOT EXISTS contacts_linkedin_member_id_idx ON contacts (workspac
 
 ## Retroactive Enrichment
 
-**[VISUAL: Flow diagram — contact import → buildAttendeeMap → scanLinkedIn → match by member ID → patch back → log connection date + message history]**
+![Retroactive enrichment — Import → BuiltAttenteMap → Scan LinkedIn → Patch back → Log Date + history](../assets/linkedin-retroactive-enrichment.png)
 
 Webhooks handle live events. Import enrichment handles everything that happened before the integration was connected.
 
