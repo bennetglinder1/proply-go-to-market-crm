@@ -34,15 +34,29 @@ Concise breakdowns of research we found most relevant, written in the context of
 
 We'll keep adding papers as we find ones that shape how we think.
 
-**Original Writing** — [`/original`](./original/)
+**Applied Writing** — [`/applied`](./applied/)
 
 Frameworks and synthesis we've developed ourselves, drawing across the research:
 
 | Piece | What it covers |
 |---|---|
-| [Why GTM Agents Need a Memory Layer](./original/gtm-memory-layer.md) | How agents currently operate without memory and why both common approaches fail. The minimum viable memory block, five design principles, and the three-layer architecture |
-| [The Workspace Memory Problem](./original/workspace-memory.md) | What gets lost between deals. Why a log isn't memory. The cross-agent learning gap Reflexion identified — and what solving it looks like at the workspace level |
-| [Entity Resolution in Real-Time GTM Data Streams](./original/gtm-entity-resolution.md) | The tiered waterfall approach, hard cases (abbreviations, nicknames, disambiguation), conflict resolution policy, and why top-down ER is right for GTM |
+| [Why GTM Agents Need a Memory Layer](./applied/gtm-memory-layer.md) | How agents currently operate without memory and why both common approaches fail. The minimum viable memory block, five design principles, and the three-layer architecture |
+| [The Workspace Memory Problem](./applied/workspace-memory.md) | What gets lost between deals. Why a log isn't memory. The cross-agent learning gap Reflexion identified — and what solving it looks like at the workspace level |
+| [Entity Resolution in Real-Time GTM Data Streams](./applied/gtm-entity-resolution.md) | The tiered waterfall approach, hard cases (abbreviations, nicknames, disambiguation), conflict resolution policy, and why top-down ER is right for GTM |
+
+**Themes** — [`/themes`](./themes/)
+
+Narrative frames for how we explain Proply's approach — written for builders, investors, and the market:
+
+| Theme | What it covers |
+|---|---|
+| [`/autonomous-ai`](./themes/autonomous-ai/) | The shift from assistant AI to autonomous agents — and why memory is the missing primitive |
+| [`/unified-stack`](./themes/unified-stack/) | The Deepline + Openrouter + Proply story — a composable agent stack with persistent memory |
+| [`/ai-native`](./themes/ai-native/) | What it means to build AI-native GTM — not AI-assisted, but AI-first by design |
+
+**Visuals** — [`/visuals`](./visuals/)
+
+Raw asset library: diagrams, architecture sketches, and visual references used across writing and themes.
 
 **Implementation Notes**
 Architecture sketches, design decisions, and lessons from building the actual system — what we tried, why it worked or didn't, and what we'd do differently.
