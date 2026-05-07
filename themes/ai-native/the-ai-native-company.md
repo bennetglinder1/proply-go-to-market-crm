@@ -2,7 +2,7 @@
 
 Most companies that call themselves AI companies are not AI-native. They are AI-assisted — faster at specific tasks, but structurally unchanged. The CRM still requires manual entry. The outreach still depends on one person's templates. The customer history still lives in someone's inbox. The pipeline stage still depends on a rep remembering to update it.
 
-AI-native is different in kind, not degree. It is not a feature set or a stack choice. It is an organizational design decision — to build workflows where agents do the structured work and humans supervise the outcomes. The distinction is architectural: AI as a foundational principle, not a layer bolted on afterward.
+AI-native is different in kind, not degree. It is not a feature set or a stack choice. It is an organizational design decision to build workflows where agents do the structured work and humans supervise the outcomes. AI is the foundational architectural principle, not a layer bolted on afterward.
 
 **[VISUAL: the three-tier spectrum — AI-assisted / AI-enabled / AI-native with key differences]**
 
@@ -12,49 +12,67 @@ Three categories are worth distinguishing clearly.
 
 **AI-assisted** companies apply AI at specific task edges — drafting emails, suggesting code completions, summarizing calls. The workflows are unchanged. A human still reads the output, decides what to do, and executes. The system assumes humans are the default processor of information. AI makes fast people faster.
 
-**AI-enabled** companies integrate AI into existing infrastructure to enhance specific functions. A CRM adds AI-powered email suggestions. A ticketing system adds AI response recommendations. The underlying architecture is intact. AI is an enhancement layer on top of processes designed without it.
+**AI-enabled** companies integrate AI into existing infrastructure to enhance specific functions. A CRM adds AI-powered email suggestions. A ticketing system adds AI response recommendations. The underlying architecture stays intact. AI is an enhancement layer on top of processes designed without it.
 
-**AI-native** companies are built differently from the start. Intelligence is not added to workflows — it is the basis on which workflows are designed. Every process begins with the question: what would this look like if agents were doing the first 80%? The data structures, decision rules, approval logic, and feedback mechanisms are all designed to be machine-readable. Humans are reviewers of ambiguous cases, not the default search engine, router, and copywriter for every interaction.
+**AI-native** companies are built differently from the start. Intelligence is not added to workflows — it is the basis on which workflows are designed. Every process begins with the question of what this would look like if agents were doing the first 80%. The data structures, decision rules, approval logic, and feedback mechanisms are all designed to be machine-readable. Humans are reviewers of ambiguous cases, not the default search engine, router, and copywriter for every interaction.
 
-The clearest test is this: remove the AI, and what is left? In an AI-assisted company, the workflow still runs. In an AI-native company, the workflow no longer exists.
+The simplest way to draw the line is to imagine removing the AI. In an AI-assisted company, the workflow still runs. In an AI-native company, the workflow no longer exists.
+
+The business model difference follows from this. AI-assisted and AI-enabled companies still price like traditional SaaS — per seat, per user, per month. AI-native companies are shifting toward usage-based and outcome-based pricing because per-seat models assume humans are doing the work. When agents are doing the first 80%, the unit of value is no longer the user — it is the outcome delivered. A16z tracked this across its portfolio in late 2024 and found AI-native companies leading the move away from seat-based SaaS toward models priced on tasks completed, deals closed, or issues resolved. That is not a pricing tactic. It is a structural consequence of who is actually doing the work.
 
 ## What AI-Native GTM Actually Looks Like
 
 **[VISUAL: traditional GTM workflow vs AI-native GTM workflow — same function, different structure]**
 
-The traditional outbound motion: an SDR builds a list, Googles each prospect, writes a generic email with a thin personalization line, updates Salesforce because their manager nags them, and passes half-formed context to an AE. Four tools, three context switches, forty minutes of work, mediocre outcome.
+The traditional outbound motion has an SDR building a list, Googling each prospect, writing a generic email with a thin personalization line, updating Salesforce because their manager nags them, and passing half-formed context to an AE. Four tools, three context switches, forty minutes of work, mediocre outcome.
 
-The AI-native version: an agent monitors buying signals — job postings, funding announcements, tech stack changes, website visits. It enriches the account, maps stakeholders, pulls relevant facts from prior interactions, and drafts outreach grounded in the contact's actual history. The rep reviews a prepared conversation, not a blank page.
+The AI-native version runs differently. An agent monitors buying signals — job postings, funding announcements, tech stack changes, website visits. It enriches the account, maps stakeholders, pulls relevant facts from prior interactions, and drafts outreach grounded in the contact's actual history. The rep reviews a prepared conversation, not a blank page.
 
 The same pattern applies to support, recruiting, legal review, claims processing, and account management. Agents handle research, classification, enrichment, drafting, and routing. Humans handle judgment, relationships, and exceptions.
 
-This is not a productivity improvement. It is a different management model. A 12-person team operating AI-native workflows can compete with an 80-person operation built on the old model. Menlo Ventures tracked the market impact in 2025: AI-native startups reached $1M ARR in a median of 12 months, roughly twice as fast as the best traditional SaaS trajectories. Conversion rates for AI-native GTM teams run at 56% versus 32% for traditional approaches. Sales cycles are 62% shorter. Customer acquisition costs are 43% lower. These are not rounding errors.
+This is not a productivity improvement. It is a different management model. Menlo Ventures tracked the compounding effect in its 2025 State of Generative AI in the Enterprise report: AI-native startups reached $1M ARR in a median of 12 months, roughly twice as fast as the best traditional SaaS trajectories. Mosaic AI's analysis of GTM teams puts the performance gap at 56% conversion rates for AI-native operations versus 32% for traditional approaches, with sales cycles running 62% shorter and customer acquisition costs 43% lower. Those numbers do not come from better cold emails. They come from a different operating structure.
 
 ## Why Most Companies Are Not There Yet
 
 **[VISUAL: the structural gap — what agents need vs what most companies have]**
 
-The number of companies genuinely operating at AI-native scale is shockingly small. Menlo Ventures puts the number plainly: only 16% of enterprise AI deployments in 2025 qualify as true agents. Most are basic routing around single model calls. Despite $37 billion flowing into the enterprise AI market that year — up from $11.5 billion a year prior — the foundational work that makes agents effective has barely started.
+The number of companies genuinely operating at AI-native scale is shockingly small. Menlo Ventures found that only 16% of enterprise AI deployments in 2025 qualify as true agents. Most are basic routing around single model calls. Despite $37 billion flowing into the enterprise AI market that year — up from $11.5 billion in 2024 — the foundational work that makes agents effective has barely started.
 
-The constraint is not access to models. Everyone has that. The constraint is that agents need something most companies have not built: a clean, accessible, machine-readable operating layer.
+The constraint is not access to models. Everyone has that. The constraint is that agents need something most companies have not built — a clean, accessible, machine-readable operating layer.
 
 An agent cannot run on a business where the truth is scattered. If the customer history lives in someone's inbox, the pricing logic is in a spreadsheet called Final_v7_NEW, the refund policy is in a Notion doc nobody trusts, and the sales process is "talk to Sarah" — the agent cannot function. It will hallucinate, escalate incorrectly, or require more human review than the original task would have taken.
 
-What agents actually need: unified, real-time data with consistent structure; explicit decision rules not buried in institutional memory; clear access boundaries and approval logic; feedback mechanisms so errors are captured and the system learns. One in five companies admits to data quality problems. Most have data freshness problems they have not measured. Almost none have structured their customer records so context is not trapped in human heads.
+Agents need unified real-time data with consistent structure, explicit decision rules not buried in institutional memory, clear access boundaries and approval logic, and feedback mechanisms so errors are captured and the system learns. AIMultiple's research on data quality found that one in five companies admits to data quality problems, and most have data freshness problems they have not yet measured. Almost none have structured their customer records so context is not trapped in human heads.
 
-The companies that become truly AI-native will do unglamorous foundational work before they do anything visible: clean the data, document the workflows, write the decision rules, structure the customer object so every agent that touches a contact starts with full context rather than a blank slate. That work is easily delayed. It is also the only path to agents that consistently deliver.
+McKinsey's research on the agentic organization identifies five transformation pillars that companies must address together — business model redesign, operating model evolution, governance structures, culture and people, and technology infrastructure. Most organizations attempt only the technology pillar while skipping the other four. They pick the model and skip the kitchen. The model works fine. The kitchen stays broken. Agents produce outputs that require more human review than the original task. The initiative stalls. The lesson drawn is usually that AI is not ready, when the correct lesson is that the organization was not ready.
+
+The companies that become truly AI-native do unglamorous foundational work before they do anything visible — clean the data, document the workflows, write the decision rules, structure the customer object so every agent that touches a contact starts with full context rather than a blank slate.
+
+## The Vertical Opportunity
+
+**[VISUAL: AI-native vertical plays — boring industries, small teams, software margins]**
+
+The most obvious AI companies are crowded. Horizontal copilots, writing tools, meeting bots, code assistants, customer support wrappers — fine businesses, but obvious. The less visible opportunity is taking boring, profitable, fragmented industries and rebuilding the operating model around agents.
+
+AI-native recruiting firms. AI-native insurance brokerages. AI-native accounting practices. AI-native compliance shops. AI-native real estate operations. AI-native BPOs that do not look like BPOs. The world is full of industries where customers pay for outcomes but the provider's cost structure is almost entirely repetitive knowledge work. That is exactly where AI-native operators have the highest leverage.
+
+What these companies look like from the outside is small teams, narrow markets, proprietary workflows, high automation, clear pain, boring category. What they look like from the inside is software margins hiding inside a services wrapper. A 10-person recruiting firm running AI-native operations can source, enrich, outreach, screen, and summarize candidates at the volume a 60-person firm used to require. The competitive moat is not intellectual property or brand — it is accumulated context. Every candidate interaction logged, stored, and accessible to every subsequent agent builds a data advantage that compounds over time and cannot be replicated by an incumbent starting late.
+
+This is also why incumbents struggle to copy these companies. An established recruiting firm cannot become AI-native by announcing an AI initiative. Their workflows are optimized around headcount. Their compensation structures assume humans do the sourcing. Bertrand Duperrin, writing on the structural divide between AI-first and AI-native businesses, puts it directly: it is uncertain whether established organizations can truly achieve native AI status rather than merely adopting certain AI elements. New companies have the advantage of no furniture to move.
+
+Menlo Ventures makes the market shift visible in its data. AI-native startups captured 63% of application layer revenue in 2025, up from 36% the year before. That is a 27-point swing in one year, concentrated in the layer — vertical software, industry-specific tools, services with automated delivery — where incumbents are most exposed.
 
 ## What This Looks Like in Practice
 
-**[VISUAL: the AI-native data layer — structured inputs agents can actually consume]**
+The companies pulling ahead did the infrastructure work first. Cursor, which raised at a $2.6 billion valuation in January 2025, got there not by using a better foundation model but by understanding what a developer actually needs in context when writing code. Clay reached $100M ARR by structuring the data enrichment problem so agents could run it end-to-end rather than assist with pieces of it. HeyGen and Gamma each crossed $100M ARR building AI-native products in categories that previously had no clear path to that scale. GrowthX hit $1M ARR in three months. According to Growth Unhinged's analysis of lean AI-native companies, the median time to $1M ARR across this cohort is roughly 12 months — about twice as fast as the best traditional SaaS benchmarks. The timelines compress because the cost structure is different from day one.
 
-The companies pulling ahead are not the ones with the best models or the most aggressive AI roadmaps. They are the ones that did the infrastructure work first.
+The practical path is narrower than most teams expect. It does not start with making the company AI-native as a goal — that abstraction produces nothing. It starts with picking one workflow where volume is high, rules exist, and humans are currently doing too much coordination: support resolution, outbound prospecting, onboarding, document review, renewal management.
 
-Cursor reached a $2.6 billion valuation not because it used a better foundation model, but because it understood what a developer actually needs in context when writing code. Clay reached $100M ARR because it structured the data enrichment problem so agents could run it end-to-end, not just assist with pieces of it. These are not AI stories in the model sense. They are design stories — companies that thought carefully about what an agent needs to do useful work, then built that.
+Map that workflow like a machine before touching a model. What triggers it. What data it needs. Which decisions are reversible. Which require approval. What good output looks like. Where errors happen. Then structure the knowledge. If the agent needs a policy, write the policy. If it needs pricing rules, make them explicit. If it needs customer history, clean the customer object. This is the step where most teams quit because it feels like documentation. It is infrastructure. Then put agents in with clear boundaries, log everything, and measure business outcomes — not hours saved or AI adoption rates, but resolution time, conversion rate, error rate, and revenue per employee.
 
-The organizational implications are significant. McKinsey's agentic organization research maps the shift from hierarchical org charts to what they call work charts: networks of human and agent collaboration organized around outcomes, not reporting lines. New role categories emerge — agent orchestrators who design and supervise workflows, hybrid managers who lead blended teams, outcome-aligned units measured by results rather than activity counts.
+Revenue per employee is the clearest leading indicator of AI-native maturity. When a company is genuinely running AI-native workflows, the number moves there first. Everything else — NPS, churn, ARR growth — follows.
 
-The measurement shift matters as much as the role shift. AI-native companies do not measure hours saved. They measure resolution time, conversion rate, revenue per employee, sales velocity, and error rate. These are the metrics that expose whether the system is actually working — and they will bifurcate visibly between AI-native and AI-assisted companies over the next three to five years.
+The organizational structure changes alongside the metrics. McKinsey maps the shift from hierarchical org charts to what they call work charts — networks of human and agent collaboration organized around outcomes rather than reporting lines. New roles emerge alongside existing ones: agent orchestrators who design and supervise workflows at the executive level, hybrid managers who lead blended human-agent teams, and outcome-aligned units measured by results rather than activity counts.
 
 ## Principles
 
@@ -62,8 +80,10 @@ The measurement shift matters as much as the role shift. AI-native companies do 
 
 **The kitchen is the company.** Cleaning data, writing decision rules, structuring customer records, building feedback loops — this is not preparation for becoming AI-native. It is what being AI-native means. Companies avoiding this work are not waiting to transform. They are declining to.
 
-**Legacy companies cannot become AI-native by announcing an AI initiative.** True transformation requires removing architectural constraints that incumbents cannot remove without threatening existing business units, compensation structures, and customer commitments. New companies have the advantage of no furniture to move.
+**The best opportunities will not look like software companies at first.** Boring industries with repetitive knowledge work and outcome-based customer relationships are exactly where AI-native operators have the highest leverage. The economics are unusual. The competition is slow. The moat is accumulated context.
 
 **Agents compound on quality of context.** The value of an AI-native operating model grows with every interaction logged, every fact stored, every decision captured and fed back into the system. The floor for a new agent is wherever the last one left off. That compounding belongs entirely to the companies that do the foundational work first.
 
-**The structural divide will show up in the numbers.** Revenue per employee, gross margin, sales cycle length, and CAC will separate AI-native from AI-assisted companies. This will not be subtle.
+**Revenue per employee is the leading metric.** Everything else — margin, NPS, growth rate — follows from it. When agents are genuinely running the structured work, that number moves first.
+
+**The structural divide will show up in the numbers.** Revenue per employee, gross margin, sales cycle length, and CAC will separate AI-native from AI-assisted companies over the next several years. It will not be subtle, and it will not take long.
