@@ -60,6 +60,15 @@ Include them when they clarify a concept that prose can't. Keep them short — 5
 
 ## Visuals
 
+Images are embedded using HTML `<img>` tags, not markdown `![]()` syntax, so width can be controlled:
+
+```html
+<img src="../assets/your-image.png" width="60%">
+```
+
+Always use `width="60%"`. Never use bare markdown image syntax for assets in this repo — it renders at full width and breaks the visual flow of the doc.
+
+
 Every doc includes exactly 4 visual placeholders. Mark them clearly:
 
 ```
