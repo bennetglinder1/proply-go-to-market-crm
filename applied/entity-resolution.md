@@ -20,17 +20,40 @@ The other pressure is latency. Webhooks fire in real time. You have milliseconds
 
 We resolve every incoming signal through a tiered waterfall, stopping at the first successful match. Each step is ordered by speed and certainty — the fast path covers the majority of signals, the slow path handles the hard cases.
 
+```
+Signal arrives
+  ↓
+External platform ID    →  match? stop, log, patch identifiers back
+  ↓ no match
+Email (normalized)      →  match? stop, log, patch identifiers back
+  ↓ no match
+LinkedIn URL            →  match? stop, log, patch identifiers back
+  ↓ no match
+Email local-part        →  1 match → resolve, patch email back
+                        →  N matches → activity signal tiebreak
+                        →  tied / no signal → reject
+  ↓ no match
+Fuzzy name + company    →  score ≥ 0.90 → merge
+                        →  0.70–0.90   → flag for review
+                        →  < 0.70      → treat as new / reject
+  ↓ no match
+Level 1 source → create new contact
+Level 2/3 source → reject silently
+```
 
+**External platform ID** — every integration assigns its own stable identifier: `rb2b_id`, `hubspot_id`, a sequence contact ID from Instantly. On first encounter we store it alongside the canonical contact. Every subsequent event from that platform matches instantly. This covers roughly 70–80% of signals from active integrations.
 
-**External platform ID** — every integration assigns its own stable identifier: , , a sequence contact ID from Instantly. On first encounter we store it alongside the canonical contact. Every subsequent event from that platform matches instantly. This covers roughly 70–80% of signals from active integrations.
+**Email (normalized)** — when an external ID isn't present, email is ground truth. Normalization matters: lowercase everything, strip display name wrappers (`"Ben Carter <ben@acme.com>"` → `ben@acme.com`), handle `+` aliases consistently. Un-normalized matching causes silent misses.
 
-**Email (normalized)** — when an external ID isn't present, email is ground truth. Normalization matters: lowercase everything, strip display name wrappers ( → ), handle  aliases consistently. Un-normalized matching causes silent misses.
+**LinkedIn URL (normalized)** — a stable unique identifier per person, but it arrives in multiple formats: with and without `www`, with trailing slashes, as a full URL or just the path. We normalize all forms to the slug and match against a normalized index.
 
-**LinkedIn URL (normalized)** — a stable unique identifier per person, but it arrives in multiple formats: with and without , with trailing slashes, as a full URL or just the path. We normalize all forms to the slug and match against a normalized index.
+**Email local-part inference** — some integrations provide an attendee email but no name at all. Google Calendar is the primary example: external invitees appear with an email address and nothing else. When no match is found by email, we parse the local part of the address — the portion before the `@` — and attempt to match against contacts who have no email on file.
 
-**Email local-part inference** — for integrations like Google Calendar where the API provides an attendee email but no display name, we parse the email local-part and attempt name matching against contacts with no email on file.  →  → match against .  →  → match against . Single match — auto-resolve, write the discovered email back to the contact record permanently. The self-healing write means the next event from that email hits step two instantly.
+Two patterns are attempted in order. A single-word local part (`spencer@growthalliance.io`) matches against first name only. A dotted or hyphenated local part (`john.smith@company.com`) splits into first and last name and matches the full name. In both cases, only an exact single match resolves — if zero contacts match or more than one match, we move to the next step.
 
-When a local-part produces multiple candidates — three contacts named Spencer — we tiebreak using the last 14 days of . Any candidate with a meeting-intent signal in their history (book, schedule, call, calendly, zoom) scores. Exactly one scorer — resolve that contact. Tied or zero scorers — reject. This covers the real case: if you just exchanged LinkedIn messages about booking a call and then a calendar event arrives with a matching  email, the meeting-intent signal in Spencer's activity log disambiguates him from every other Spencer in the workspace.
+When the local-part produces multiple candidates — three contacts named Spencer — we tiebreak using the last 14 days of activity. Each candidate's activity history is checked for meeting-intent signals: any record mentioning booking, scheduling, a call, Calendly, or Zoom scores that contact. Exactly one scorer — resolved. Tied scorers or no scorers at all — rejected. The practical case: you exchanged LinkedIn messages with someone about getting on a call, then a calendar invite arrives from an address that matches three people in your workspace by first name. The meeting-intent signal already recorded in that contact's activity log picks the right one without guessing.
+
+On any successful match, the discovered email is written back to the contact record immediately. The next event from that address resolves at the email step.
 
 **Fuzzy name + company** — for signals that carry a name and company but no email or external ID (primarily meeting transcripts from Fireflies), we compute a composite similarity score combining token sort ratio, phonetic encoding, and edit distance for names, plus token overlap for company names. Above 0.90 — auto-merge. Between 0.70–0.90 — flag for human review. Below — new contact or reject depending on source.
 
@@ -46,11 +69,11 @@ Not every unmatched signal should create a new contact. The decision depends on 
 
 **Level 2 — communication sources** (Gmail): reject on no match. Anyone who has ever emailed you would become a contact. The noise ratio is too high.
 
-**Level 3 — meeting sources** (Fireflies, Calendly, Fathom, Google Calendar): reject on no match. Meeting participants aren't necessarily prospects. If no match exists, the signal is discarded — .
+**Level 3 — meeting sources** (Fireflies, Calendly, Fathom, Google Calendar): reject on no match. Meeting participants aren't necessarily prospects. If no match exists, the signal is discarded — `createIfMissing: false`.
 
 Without this distinction, a single 20-person all-hands transcript creates 20 spurious contacts and fills your pipeline with noise.
 
-Resolution is also idempotent by design. Webhook providers retry failed deliveries — the same signal might arrive 2–5 times. A unique constraint on  in the activity log means processing the same event twice produces the same result as processing it once.
+Resolution is also idempotent by design. Webhook providers retry failed deliveries — the same signal might arrive 2–5 times. A unique constraint on `(source, external_id)` in the activity log means processing the same event twice produces the same result as processing it once.
 
 ## Principles
 
@@ -64,4 +87,4 @@ Resolution is also idempotent by design. Webhook providers retry failed deliveri
 
 **Resolution errors compound.** A bad merge in a live stream corrupts every future signal from that source. The asymmetry in error cost — false negative creates a duplicate, false positive corrupts an identity — argues for a high merge threshold and a human review queue for uncertain cases.
 
-**The hard cases are known.** Abbreviations ( vs ), nicknames ( vs ), and meeting participants with no email are the three cases the waterfall won't catch automatically. They're addressable — lookup tables, phonetic encoding, enrichment — but worth naming so they don't become silent failures.
+**The hard cases are known.** Abbreviations (`IBM` vs `International Business Machines`), nicknames (`Ben` vs `Bennet`), and meeting participants with no email are the three cases the waterfall won't catch automatically. They're addressable — lookup tables, phonetic encoding, enrichment — but worth naming so they don't become silent failures.
