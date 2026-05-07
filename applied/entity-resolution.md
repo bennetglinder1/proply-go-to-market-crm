@@ -20,26 +20,7 @@ The other pressure is latency. Webhooks fire in real time. You have milliseconds
 
 We resolve every incoming signal through a tiered waterfall, stopping at the first successful match. Each step is ordered by speed and certainty — the fast path covers the majority of signals, the slow path handles the hard cases.
 
-```
-Signal arrives
-  ↓
-External platform ID    →  match? stop, log, patch identifiers back
-  ↓ no match
-Email (normalized)      →  match? stop, log, patch identifiers back
-  ↓ no match
-LinkedIn URL            →  match? stop, log, patch identifiers back
-  ↓ no match
-Email local-part        →  1 match → resolve, patch email back
-                        →  N matches → activity signal tiebreak
-                        →  tied / no signal → reject
-  ↓ no match
-Fuzzy name + company    →  score ≥ 0.90 → merge
-                        →  0.70–0.90   → flag for review
-                        →  < 0.70      → treat as new / reject
-  ↓ no match
-Level 1 source → create new contact
-Level 2/3 source → reject silently
-```
+![Resolution waterfall — 6 steps from External platform ID through Email, LinkedIn URL, Email local-part, Fuzzy name + company, to Source-based create or reject](../assets/resolution-waterfall.png)
 
 **External platform ID** — every integration assigns its own stable identifier: `rb2b_id`, `hubspot_id`, a sequence contact ID from Instantly. On first encounter we store it alongside the canonical contact. Every subsequent event from that platform matches instantly. This covers roughly 70–80% of signals from active integrations.
 
