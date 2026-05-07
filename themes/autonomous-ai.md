@@ -8,27 +8,30 @@ Understanding that gap — what makes it hard to close, who is closest, and what
 
 ## The Autonomy Spectrum
 
-**[VISUAL: the autonomy spectrum — copilot / agentic / autonomous with key differences at each level]**
+<img src="../assets/ai-autonomous-spectrum.png" width="60%">
 
 Autonomy is not binary. [Anthropic's empirical research on agent autonomy](https://www.anthropic.com/research/measuring-agent-autonomy), drawn from millions of real interactions across Claude Code and its API, maps five escalating roles a human can play relative to an agent: **operator → collaborator → consultant → approver → observer**. The further right on this spectrum, the more autonomous the agent and the more the human's job shifts from directing to monitoring.
 
-At the low end, a human is effectively operating the agent — writing every instruction, reviewing every output. At the high end, the human is an observer — notified of completions, stepping in only when something goes wrong. Most production deployments in 2025 sit somewhere in the middle: the agent executes multi-step workflows and uses tools independently, but pauses for human approval at high-stakes or ambiguous decision points.
+The automotive analogy holds well here. The SAE L0–L5 self-driving scale captures the same underlying dynamic:
 
-The automotive analogy is useful not because AI agents drive cars, but because the SAE L0–L5 self-driving scale captures the same underlying dynamic: as you hand control to the system, the system's failure modes change faster than human intuition expects. L2 autonomy (driver assistance) and L4 autonomy (no driver needed in defined conditions) are not adjacent steps — they are separated by an enormous engineering and trust gap. The same is true for AI agents. Most deployed agents in 2025 operate between levels 2 and 3. Genuine L4-equivalent autonomy — the agent runs entire workflows end-to-end in production without human checkpoints — remains rare.
+- **L0–L2**: The human is always in control. AI assists but does not act.
+- **L3**: AI can drive in defined conditions. Human must be ready to retake control.
+- **L4**: AI drives without human intervention in defined environments.
+- **L5**: Full autonomy. No human needed, in any environment.
+
+The jump from L3 to L4 is where most of the difficulty lives — not because the capability gap is large, but because the trust gap and the governance gap are enormous. The same is true for AI agents. As of May 2026, most production deployments operate between levels 2 and 3. Genuine L4-equivalent autonomy — the agent runs entire workflows end-to-end without human checkpoints — remains rare outside of domains with objective correctness like coding and structured data work.
 
 Three categories help orient the landscape:
 
-**Copilots** suggest, draft, and recommend. A human reads every output and decides what to do. The workflow is unchanged. The system assumes humans are the default processor of information.
-
-**Agentic AI** plans, uses tools, and executes multi-step tasks. Humans supervise and approve at key moments. The workflow changes, but the human remains accountable for outcomes.
-
-**Autonomous AI** owns the workflow end-to-end. The agent sets intermediate goals, takes actions, monitors outcomes, and adjusts without checking in. Humans review results and handle exceptions. The workflow cannot exist without the agent.
+- **Copilots** — AI suggests, drafts, and recommends. A human reads every output and decides what to do. The workflow is unchanged. The system assumes humans are the default processor of information.
+- **Agentic AI** — AI plans, uses tools, and executes multi-step tasks. Humans supervise and approve at key moments. The workflow changes, but the human remains accountable for outcomes.
+- **Autonomous AI** — AI owns the workflow end-to-end. The agent sets intermediate goals, takes actions, monitors outcomes, and adjusts without checking in. Humans review results and handle exceptions. The workflow cannot exist without the agent.
 
 ## Where We Actually Are
 
-**[VISUAL: the real adoption picture — what's claimed vs. what's deployed vs. what's actually autonomous]**
+<img src="../assets/ai-autonomous-adoption-funnel.png" width="60%">
 
-The honest picture of autonomous AI in 2025 is smaller than the headlines suggest and larger than most organizations are prepared for.
+The honest picture of autonomous AI as of May 2026 is smaller than the headlines suggest and larger than most organizations are prepared for.
 
 [Capgemini's global survey of 1,500 executives](https://www.capgemini.com/insights/research-library/ai-agents/) found that only 2% have deployed AI agents at full scale, 12% at partial scale, 23% are in pilots, and 61% are still exploring. Only 15% of all business processes currently operate at semi-autonomous to fully autonomous levels. The rest use agents as assistants or copilots, not autonomous workers.
 
@@ -60,21 +63,48 @@ The WEF has proposed a **Know Your Agent (KYA)** framework — a trust primitive
 
 [Harvard Business Review identifies a new organizational role emerging from this need](https://hbr.org/2026/02/to-thrive-in-the-ai-era-companies-need-agent-managers): the **agent manager**. Just as product managers emerged during the software revolution, agent managers define what each agent is authorized to do, where its authority stops, and how its performance is measured. The analogy to managing a new hire is deliberate — treat new agents like interns until they have demonstrated they can perform, then extend scope accordingly.
 
-## Who Is Closest
+## Who Is Closest (May 2026)
 
-**[VISUAL: who is furthest along — by domain, by company, by autonomy level achieved]**
+The companies making real progress share a pattern: they started with a narrow, well-defined domain where success and failure were unambiguous. Here is the state of play as of May 2026.
 
-The companies making real progress share a pattern: they started with a narrow, well-defined domain where success and failure were unambiguous.
+**Anthropic — Claude Code**
+- The most empirically documented autonomous coding agent in production
+- [Auto mode](https://www.infoq.com/news/2026/05/anthropic-claude-code-auto-mode/) enables multi-step software development with layered safety gates (input filtering, action evaluation, approval checkpoints for sensitive operations)
+- Rakuten reduced average feature delivery time from 24 working days to 5
+- At Anthropic itself, the majority of code is now written by Claude Code, with engineers focusing on architecture and orchestration
+- [99.9th percentile session duration doubled](https://www.anthropic.com/research/measuring-agent-autonomy) between October 2025 and January 2026 — indicating agents are tackling progressively longer, more complex tasks
+- MCP (Model Context Protocol), donated to the Linux Foundation, has become the open standard for connecting agents to tools and data across the industry
 
-**Cognition / Devin** is the furthest documented case in software engineering. The reason coding works as an autonomous AI domain is that code has objective correctness — tests pass or they do not. An autonomous agent can verify its own work in a way that is impossible in most other domains.
+**Cognition — Devin**
+- The first autonomous AI software engineer in widespread enterprise production
+- PR merge rate went from 34% → 67% in 18 months; ARR grew from $1M to $73M (September 2024 to June 2025)
+- Produces 25% of Cognition's own code; CEO target is 50% by end of 2025
+- Nubank: 12x efficiency improvement in engineering hours, 20x cost savings on ETL migration
+- Security vulnerability remediation: human average 30 minutes per fix, Devin 1.5 minutes
+- Strongest on tasks with clear, upfront requirements and verifiable outcomes — "senior-level at codebase understanding, junior at execution"
 
-**Salesforce Agentforce** is the furthest documented case in customer service. The decision tree is finite. The stakes per interaction are low enough that occasional errors are recoverable. Volume is high enough that automation compounds.
+**OpenAI — ChatGPT Agent / o3**
+- [ChatGPT agent](https://openai.com/index/introducing-operator/) (formerly Operator) is fully deployed as of mid-2025, operating computer GUIs directly without API integration
+- o3 and o4-mini reasoning models score 71.7% on SWE-bench Verified (real-world software engineering tasks), up from 48.9% for o1
+- o3 achieved 87.7% on GPQA Diamond (expert-level science), 88.9% on AIME 2025 math
+- The reasoning models are trained to choose when and how to use tools agentically, completing complex tasks typically in under a minute
 
-**OpenAI Operator / ChatGPT Agent**, launched January 2025, takes a different approach — the agent operates a computer's graphical interface directly, no API integration required. Benchmark scores (38.1% on OSWorld, 58.1% on WebArena) suggest genuine capability on defined computer-use tasks, though production deployments remain limited.
+**Google — Gemini 2.5 + Computer Use**
+- [Gemini 2.5 Computer Use model](https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-computer-use-model/) powers agents that interact with UIs directly — clicking, typing, scrolling, filling forms — outperforming alternatives on web and mobile control benchmarks
+- Project Mariner (Google's standalone web-browsing agent) was shut down May 4, 2026; its technology was absorbed into the Gemini API and Gemini Agent
+- Gemini 2.5 Pro supports 1M token context and MCP integration, making it a strong candidate for long-horizon autonomous tasks
+- Available via Gemini API on Google AI Studio and Vertex AI
 
-**Adept AI** is the instructive counterpoint. Once valued at $400M+ and pitching general-purpose autonomous computer use, Adept ultimately pivoted and was acquired by Amazon. The lesson: general-purpose autonomy was premature. Vertical or bounded deployment was far more tractable. The lesson compounds: companies that try to deploy autonomous AI across too many domains too quickly, before mastering one, tend to produce the governance failures that erode industry-wide trust.
+**Salesforce — Agentforce**
+- The furthest along in customer service at enterprise scale
+- 8,000+ businesses live; OpenTable resolved 70% of inquiries autonomously; Reddit cut resolution time from 8.9 minutes to 1.4 minutes (84% reduction)
+- One financial services deployment: 15-day reporting process → 35 minutes; cost from $2,200 → $9 per report
+- 74% of customer support cases resolved autonomously in some deployments
 
-**AutoGPT** in 2023 made the concept of autonomous agents legible to a mass audience. It also proved fragile in practice. The 2025 assessment of that early wave: "Fully autonomous agents — the vision sold by AutoGPT demos of 'plan my vacation' and 'run my company' — almost none survive in production." The gap between demo and deployment is where most autonomous AI initiatives still live.
+**The cautionary cases**
+
+- **Adept AI** — once valued at $400M+ pitching general-purpose autonomous computer use. Pivoted, then acquired by Amazon. The lesson: general-purpose autonomy before solving one domain deeply produces the governance failures that erode trust across the industry.
+- **AutoGPT (2023)** — made the concept of autonomous agents legible to a mass audience. Also proved fragile in practice. "Fully autonomous agents — the vision sold by AutoGPT demos of 'plan my vacation' and run my company' — almost none survive in production." The gap between demo and deployment is where most autonomous AI initiatives still live.
 
 ## The Path Forward
 
