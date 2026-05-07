@@ -4,11 +4,11 @@ Every GTM agent that touches a contact starts from a blank slate unless you give
 
 Context engineering is the practice of deliberately constructing what goes into the model's context window before it acts on a contact — deciding what to include, what to compress, and in what order. We built a structured context layer for Proply that every agent reads before taking any action on a contact and writes back to after.
 
-**[VISUAL: the before/after loop — agent reads context, acts, writes back]**
+<img src="../assets/context-engineering-before-after-loop.png" width="60%">
 
 ## The Setup
 
-**[VISUAL: contact context anatomy — identity, summary, facts, activities, company]**
+<img src="../assets/context-engineering-contact-anatomy.png" width="60%">
 
 The context for any contact is assembled from five layers: identity and firmographics (company, title, ICP score, pipeline stage, warmth), an AI-generated summary of the relationship, memory facts stored by previous agents or integrations, activity signals with temporal compression, and company-level context including other stakeholders at the account.
 
@@ -28,7 +28,7 @@ Three things make context construction hard in practice.
 
 ## How We Construct the Context Window
 
-**[VISUAL: activity timeline with temporal compression zones — 7d full / 7–30d description / 30–90d counts]**
+<img src="../assets/context-engineering-activity-timeline.png" width="60%">
 
 We apply three distinct treatments to activity history based on recency.
 
@@ -46,7 +46,7 @@ The summary is a single pre-computed paragraph that captures the relationship st
 
 ## Fact Deduplication and Superseding
 
-**[VISUAL: fact superseding — new fact replaces near-duplicate in vector space]**
+<img src="../assets/context-engineering-fact-superseding.png" width="60%">
 
 Every time a fact is written, we run a similarity check against existing facts scoped to the same contact. If an existing fact is above a similarity threshold and belongs to the same category, the new fact supersedes it — the old one is soft-deleted and replaced. This keeps the fact list clean without requiring the agent to manage deduplication manually.
 
