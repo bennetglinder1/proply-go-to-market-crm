@@ -7,6 +7,8 @@ AI-native is different in kind, not degree. It is not a feature set or a stack c
 
 ## The Spectrum
 
+<img src="../assets/ai-native-spectrum.png" width="60%">
+
 Three categories are worth distinguishing clearly.
 
 **AI-assisted** companies apply AI at specific task edges — drafting emails, suggesting code completions, summarizing calls. The workflows are unchanged. A human still reads the output, decides what to do, and executes. The system assumes humans are the default processor of information. AI makes fast people faster.
