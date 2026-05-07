@@ -8,11 +8,11 @@ Context engineering is the practice of deliberately constructing what goes into 
 
 ## The Setup
 
-<img src="../assets/context-engineering-contact-anatomy.png" width="60%">
-
 The context for any contact is assembled from five layers: identity and firmographics (company, title, ICP score, pipeline stage, warmth), an AI-generated summary of the relationship, memory facts stored by previous agents or integrations, activity signals with temporal compression, and company-level context including other stakeholders at the account.
 
 We expose this as a single API call — `get_contact` by email or UUID — that returns all five layers in one response. The agent doesn't have to assemble context from multiple sources or join records itself. Every layer has already been computed, ordered, and formatted for consumption.
+
+<img src="../assets/context-engineering-contact-anatomy.png" width="60%">
 
 ## The Token Budget Problem
 
