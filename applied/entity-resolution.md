@@ -61,7 +61,7 @@ At every step, the identifiers used to find a match get patched back onto the co
 
 ## Source Trust and Create / Reject
 
-**[VISUAL: Three source levels — L1 prospecting tools (create on no match) / L2 communication (reject) / L3 meeting tools (reject) — with example integrations at each level]**
+![L1 prospecting tools create on no match, L2 communication and L3 meeting tools reject — with example integrations at each level](../assets/source-trust-levels.png)
 
 Not every unmatched signal should create a new contact. The decision depends on where the signal came from.
 
