@@ -4,7 +4,6 @@ Most companies that call themselves AI companies are not AI-native. They are AI-
 
 AI-native is different in kind, not degree. It is not a feature set or a stack choice. It is an organizational design decision to build workflows where agents do the structured work and humans supervise the outcomes. AI is the foundational architectural principle, not a layer bolted on afterward.
 
-**[VISUAL: the three-tier spectrum — AI-assisted / AI-enabled / AI-native with key differences]**
 
 ## The Spectrum
 
@@ -22,7 +21,7 @@ The business model difference follows from this. AI-assisted and AI-enabled comp
 
 ## What AI-Native GTM Actually Looks Like
 
-**[VISUAL: traditional GTM workflow vs AI-native GTM workflow — same function, different structure]**
+<img src="../assets/ai-native-gtm-workflow.png" width="60%">
 
 The traditional outbound motion has an SDR building a list, Googling each prospect, writing a generic email with a thin personalization line, updating Salesforce because their manager nags them, and passing half-formed context to an AE. Four tools, three context switches, forty minutes of work, mediocre outcome.
 
@@ -34,7 +33,7 @@ This is not a productivity improvement. It is a different management model. [Men
 
 ## Why Most Companies Are Not There Yet
 
-**[VISUAL: the structural gap — what agents need vs what most companies have]**
+<img src="../assets/ai-native-structural-gap.png" width="60%">
 
 The number of companies genuinely operating at AI-native scale is shockingly small. [Menlo Ventures found that only 16% of enterprise AI deployments in 2025 qualify as true agents](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/). Most are basic routing around single model calls. Despite $37 billion flowing into the enterprise AI market that year — up from $11.5 billion in 2024 — the foundational work that makes agents effective has barely started.
 
@@ -50,7 +49,7 @@ The companies that become truly AI-native do unglamorous foundational work befor
 
 ## How to Recognize an AI-Native Company
 
-**[VISUAL: AI-native identifiers — team size vs output, data structure, pricing model, org signals]**
+<img src="../assets/ai-native-identifiers.png" width="60%">
 
 The label is easy to claim. The signals that make it real are specific and observable.
 
