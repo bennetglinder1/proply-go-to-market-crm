@@ -4,11 +4,11 @@ Every GTM tool assigns its own identifier to the same person. RB2B identifies a 
 
 Entity resolution is the continuous, real-time problem of matching incoming signal records to the right canonical contact. We built a tiered resolution waterfall that handles this across every integration Proply connects to, under latency constraints that don't allow for batch processing or LLM inference on every record.
 
-![Multiple sources — LinkedIn, Gmail, Instantly, Notion, RB2B — all pointing to the same contact with question marks](../assets/entity-resolution-sources.png)
+<img src="../assets/entity-resolution-sources.png" width="75%">
 
 ## One Person, Many Identifiers
 
-![Same person identified differently across LinkedIn (URL), Gmail (personal email), Instantly (work email), RB2B (domain) — no shared key](../assets/entity-resolution-identifiers.png)
+<img src="../assets/entity-resolution-identifiers.png" width="75%">
 
 No universal identifier exists across GTM tools. Email is the closest — but it is only present in 60–70% of incoming signals. A Fireflies transcript gives you a participant name with no email. A LinkedIn connection event gives you a profile URL with no email. An RB2B visit gives you an email but a different name format than the same person's record in HubSpot. And the same person often has multiple emails across different tools — personal Gmail in one, work address in another.
 
@@ -20,7 +20,7 @@ The other pressure is latency. Webhooks fire in real time. You have milliseconds
 
 We resolve every incoming signal through a tiered waterfall, stopping at the first successful match. Each step is ordered by speed and certainty — the fast path covers the majority of signals, the slow path handles the hard cases.
 
-![Resolution waterfall — 6 steps from External platform ID through Email, LinkedIn URL, Email local-part, Fuzzy name + company, to Source-based create or reject](../assets/resolution-waterfall.png)
+<img src="../assets/resolution-waterfall.png" width="75%">
 
 **External platform ID** — every integration assigns its own stable identifier: `rb2b_id`, `hubspot_id`, a sequence contact ID from Instantly. On first encounter we store it alongside the canonical contact. Every subsequent event from that platform matches instantly. This covers roughly 70–80% of signals from active integrations.
 
@@ -42,7 +42,7 @@ At every step, the identifiers used to find a match get patched back onto the co
 
 ## Source Trust and Create / Reject
 
-![L1 prospecting tools create on no match, L2 communication and L3 meeting tools reject — with example integrations at each level](../assets/source-trust-levels.png)
+<img src="../assets/source-trust-levels.png" width="75%">
 
 Not every unmatched signal should create a new contact. The decision depends on where the signal came from.
 
